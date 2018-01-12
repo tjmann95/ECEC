@@ -1,4 +1,4 @@
-from Tkinter import *
+from tkinter import *
 import random
 
 # Created by Team Kraken (captain Adam Hoinkis) in Spring 2016
@@ -31,7 +31,7 @@ def mix_up(n):
         while t == prev_move:                                   # Prevent trivial moves (back-and-forth of one tile)
             t = random.choice(valid[free_space])
         prev_move = free_space                                  # The new free_space is now where the last tile used to be.
-        print "Moving tile #", t
+        print("Moving tile #" + t)
 
         puzzle_root.after(100, move_tile, t, 0)                 # move the selected tile
         puzzle_root.after(700, mix_up, n+1)                     # recursively call mix_up with a delay.

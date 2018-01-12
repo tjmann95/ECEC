@@ -12,24 +12,30 @@ root = tk.Tk()
 
 
 def back():  # Complete this stub. Start by removing the return.
-    print "Back button pressed."
+    print("Back button pressed.")
     global N
 
     # Add your code here. First update N. Just decrement it by 1.
     # Take the remainder to be sure the index is always valid.
-
+    N -= 1
+    N = N % len(photos)
     # Then update the text_display and picture_display widgets.
-
+    text_display["text"] = description[N]
+    picture_display["image"] = photos[N]
+    root.update()
 
 def forward():  # Complete this stub. Start by removing the return.
-    print "Forward button pressed."
+    print("Forward button pressed.")
     global N
 
     # Add your code here. First update N. Just increment it by 1.
     # Take the remainder to be sure the index is always valid.
-
+    N += 1
+    N = N % len(photos)
     # Then update the text_display and picture_display widgets.
-
+    text_display["text"] = description[N]
+    picture_display["image"] = photos[N]
+    root.update()
 
 
 # This makes it possible for the user to choose AutoPlay again.
@@ -48,7 +54,7 @@ def autoplay():
     global pending_job_ID
     global N
     if auto_button["text"]=="AutoPlay":
-        print "Autoplay button pressed."
+        print("Autoplay button pressed.")
     auto_button["text"]="Stop AutoPlay"
     auto_button.config(command=stop_autoplay)  # If the same button is pressed again, autoplay stops.
 
@@ -70,7 +76,7 @@ def stop_autoplay():
     forward_button.configure(state=tk.NORMAL)
 
     if auto_button["text"]=="Stop AutoPlay":
-        print "Stop Autoplay button pressed."
+        print("Stop Autoplay button pressed.")
     # Now enable autoplay to resume if the user wishes.
     root.after(1000, enable_autoplay)
 
@@ -129,10 +135,10 @@ text_display.pack(fill=tk.X)
 control_frame = tk.Frame(frame, bg="lightyellow")
 control_frame.pack(fill=tk.X)
 
-back_button = tk.Button(control_frame, text="Back")  # Specify that the callback method is named back.
+back_button = tk.Button(control_frame, text="Back", command=back)  # Specify that the callback method is named back.
 back_button.pack(side=tk.LEFT, padx = 10)
 
-forward_button = tk.Button(control_frame, text="Forward")  # Specify that the callback method is named forward.
+forward_button = tk.Button(control_frame, text="Forward", command=forward)  # Specify that the callback method is named forward.
 forward_button.pack(side=tk.RIGHT)
 
 auto_button = tk.Button(control_frame, text="AutoPlay", command=autoplay)
@@ -144,9 +150,9 @@ picture_display = tk.Label(frame, bg="beige", padx=6, pady=6)
 picture_display.pack(padx=6, pady=6)
 
 # Show the initial image and description, which has index 0.
+N=0 # Index of the current image.
 text_display["text"]= description[0]
 picture_display["image"] = photos[0]
-N=0 # Index of the current image.
 
 # This next line was added so we can cancel the autoplay.
 pending_job_ID = root.after(1, stop_autoplay)  # This will be a global variable, so w can cancel the job using after_cancel()
