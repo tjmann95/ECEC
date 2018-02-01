@@ -122,14 +122,36 @@ print "If this prints, the above quit call did not work."
 # EXERCISES
 # A. Add your code for exercise A here. See PDF. There are seven parts!
 # Demonstrate the __call__ method equivalence for each,(if it is callable).
-
+a = 3
+if callable(a):
+    a.__call__()
+if callable(math):
+    math.__call__()
+if callable(math.sqrt):
+    math.sqrt.__call__()
+if callable(math.pi):
+    math.pi.__call__()
+if callable(range):
+    range.__call__()
+if callable(for):
+    for.__call__()
+if callable(if):
+    if.__call__()
 
 
 # B. Add your code for exercise B here.
 
 class RudePerson:
-    pass
-# Replace pass with an init method and a call method.
 
+    def __init__(self, name, insult):
+        self.name = name
+        self.insult = insult
+
+    def __call__(self, target, *args, **kwargs):
+        saying = self.name + ": " + self.insult + " " + target
+        print saying
 
 # Construct two rude people. Then have them call each other and fling insults!
+b = RudePerson("Bill", "You suck")
+t = RudePerson("Ted", "Ur shit")
+print b(t)

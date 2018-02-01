@@ -6,10 +6,12 @@ def greeting(*args):  # A method with a variable number of parameters.
 
 
     # Handle the case of no arguments here.
-
+    if len(args) == 0:
+        print "Hi! Are you new here?"
 
     # Handle the case of two arguments here.
-
+    if len(args) == 2:
+            print "Nice to meet you %s! My name is %s." % (args[0], args[1])
 
 
     if len(args) == 1:
@@ -31,4 +33,4 @@ greeting()
 greeting("Mork")
 greeting("Mork", "Mindy")
 greeting(10)
-greeting(True)
+greeting(False)

@@ -31,5 +31,39 @@ def py_triple(cmax):
 triples = py_triple(300)
 # 10. Print out the number of Pythagorean triples you found.
 number_found = len(triples)
-print "There are %d Pythagorean Triples (a, b, c) with c <= 100." % number_found
+print "There are %d Pythagorean Triples (a, b, c) with c <= 300." % number_found
 print triples
+
+def primitive_py_triple(cmax):
+    pythagorean_triple = []
+
+    for n in range(1, 11):
+        for m in range(n + 1, 11, 2):
+            if gcd(m, n) == 1:
+                a, b, c = m*m - n*n, 2*m*n, m*m + n*n
+                triple = [a, b, c]
+                triple.sort()
+                if c <= cmax:
+                    pythagorean_triple.append(triple)
+    return pythagorean_triple
+
+
+triples = primitive_py_triple(300)
+number_found = len(triples)
+print "There are %d Pythagorean Triples (a, b, c) with c <= 300." % number_found
+print triples
+
+if __name__ == "__main__":
+    triples = py_triple(300)
+    product = 1
+    counters = []
+
+    for triple in triples:
+        for num in triple:
+            product *= num
+    if product % 60 != 0:
+        counters.append(triple)
+    product = 1
+
+    print "There are %d counter examples: " % len(counters)
+    print(counters)

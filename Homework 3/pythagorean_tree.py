@@ -23,12 +23,45 @@ print "The product A*x is:\n", (A*x)
 
 
 # Define the matrix B using numpy, and display B*x.
+B = np.matrix(((1, 2, 2), (2, 1, 2), (2, 2, 3)))
 
-
-
-
+print "The product B*x is:\n", (B*x)
 # Define the matrix C using numpy, and display C*x.
+C = np.matrix(((-1, 2, 2), (-2, 1, 2), (-2, 2, 3)))
 
-
-
+print "The product B*x is:\n", (C*x)
 # Complete all tasks stated in the PDF.
+level_1 = [A*x, B*x, C*x]
+level_2 = []
+for triple in level_1:
+    level_2.append(A * triple)
+    level_2.append(B * triple)
+    level_2.append(C * triple)
+print "Level 2: "
+print level_2
+
+print "Last in level 3: "
+print C*level_2[-1]
+
+def ternary(n):
+    e = n//3
+    q = n%3
+    if n == 0:
+        return "0"
+    elif e == 0:
+        return str(q)
+    else:
+        return ternary(e) + str(q)
+
+def thingy(n):
+    result = x
+    for digit in reversed(ternary(n)):
+        if digit == "0":
+            result = A * result
+        elif digit == "1":
+            result = B * result
+        elif digit == "2":
+            result = C * result
+    return result
+
+thingy(15)

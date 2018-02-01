@@ -11,7 +11,7 @@ when the user clicks on it."""
 
 
 # Row # 0
-Label(root, text="1. Enter x.").grid(row=0, column=0)
+Label(root, text="1. Enter x.").grid(row=0, column=0, sticky=W)
 x_widget = Entry(root, justify=CENTER)
 x_widget.grid(row=0, column=1)
 
@@ -19,13 +19,14 @@ x_widget.grid(row=0, column=1)
 v = IntVar()
 radians_button = Radiobutton(root, text="Radians", variable=v, value=0)
 radians_button.grid(row=0, column=2)
+radians_button.select()
 
 degrees_button = Radiobutton(root, text="Degrees", variable=v, value=1)
 degrees_button.grid(row=0, column=3)
-degrees_button.select()  # Program starts with this radio button selected.
+# degrees_button.select()  # Program starts with this radio button selected.
 
 # Row # 1
-Label(root, text="2. Select function f.").grid(row=1, column=0)
+Label(root, text="2. Select function f.").grid(row=1, column=0, sticky=W)
 
 my_menu_button = Menubutton(root, text='Select Function', relief='raised', padx=2, pady=2)
 my_menu_button.grid(row=1, column=1)
@@ -86,12 +87,148 @@ def calculate(i):
         result_widget.delete(0, END)
         result_widget.insert(0, result)
 
+    if func == "log":  # A bivariate example
+        # Indicate the selected function in the label named selected_function_indicator.
+        selected_function_indicator.config(text="Function: " + func)
+
+        result =  math.log(x, y)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "hypot":  # A bivariate example
+        # Indicate the selected function in the label named selected_function_indicator.
+        selected_function_indicator.config(text="Function: " + func)
+
+        result =  math.log(x, y)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
 
      # Add if blocks here for each new function!
+    if func == "cos":
+        # Indicate the selected function in the label named selected_function_indicator.
+        selected_function_indicator.config(text="Function: " + func)
+
+        if v.get() == 1:  # angle x was entered in degrees.
+            x = math.radians(x)  # Convert x from degrees to radians
+        result = math.cos(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "tan":
+        # Indicate the selected function in the label named selected_function_indicator.
+        selected_function_indicator.config(text="Function: " + func)
+
+        if v.get() == 1:  # angle x was entered in degrees.
+            x = math.radians(x)  # Convert x from degrees to radians
+        result = math.tan(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "atan":
+        # Indicate the selected function in the label named selected_function_indicator.
+        selected_function_indicator.config(text="Function: " + func)
+
+        if v.get() == 1:  # angle x was entered in degrees.
+            x = math.radians(x)  # Convert x from degrees to radians
+        result = math.atan(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "asin":
+        # Indicate the selected function in the label named selected_function_indicator.
+        selected_function_indicator.config(text="Function: " + func)
+
+        if v.get() == 1:  # angle x was entered in degrees.
+            x = math.radians(x)  # Convert x from degrees to radians
+        result = math.asin(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "acos":
+        # Indicate the selected function in the label named selected_function_indicator.
+        selected_function_indicator.config(text="Function: " + func)
+
+        if v.get() == 1:  # angle x was entered in degrees.
+            x = math.radians(x)  # Convert x from degrees to radians
+        result = math.acos(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "ceil":
+        selected_function_indicator.config(text="Function: " + func)
+
+        result = math.ceil(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "fabs":
+        selected_function_indicator.config(text="Function: " + func)
+
+        result = math.fabs(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "factorial":
+        selected_function_indicator.config(text="Function: " + func)
+
+        result = math.factorial(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "floor":
+        selected_function_indicator.config(text="Function: " + func)
+
+        result = math.floor(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "error":
+        selected_function_indicator.config(text="Function: " + func)
+
+        result = math.erf(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "cerror":
+        selected_function_indicator.config(text="Function: " + func)
+
+        result = math.erfc(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "gamma":
+        selected_function_indicator.config(text="Function: " + func)
+
+        result = math.gamma(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
+
+    if func == "loggamma":
+        selected_function_indicator.config(text="Function: " + func)
+
+        result = math.lgamma(x)
+        print "The result is:", result
+        result_widget.delete(0, END)
+        result_widget.insert(0, result)
 
 
 
-function_list = ["sin", "cos", "tan", "sqrt", "exp"]  # <-- Add function names here.
+function_list = ["sin", "cos", "tan", "sqrt", "exp", "ceil", "fabs", "factorial", "floor", "pow", "log", "hypot", "asin", "acos", "atan", "error", "cerror", "gamma", "loggamma"]  # <-- Add function names here.
 n = len(function_list)
 for i in range(0,n):
     # m.add_command(label='Option %s' % (i), command=lambda i=i: callback(i))
@@ -106,7 +243,7 @@ Each menu command ends up processing the same value - the final value of the loo
 """
 
 # Row # 2
-Label(root, text="3. Result y = f(x).").grid(row=2, column=0)
+Label(root, text="3. Result y = f(x).").grid(row=2, column=0, sticky=W)
 
 result_widget = Entry(root, justify=CENTER)
 result_widget.grid(row=2, column=1)

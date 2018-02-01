@@ -19,9 +19,21 @@ class Duck(Bird):
         self.flap_wings()
 
 
+class Dodo(Bird):
+    def flap_wings(self):
+        print "Flapping wings is useless! SPLAT!"
+
+    def fly(self):
+        print "Dodos can't fly!"
+
+
 class Airplane:
     def spin_propellers(self):
-        print "\tPropellers spinning!"
+        print "\tFlap, ",
+        for n in range(5):
+            print "spin,",
+            time.sleep(0.25)
+        print "..."
 
     def fly(self):
         print("Airplane flying")
@@ -30,6 +42,18 @@ class Airplane:
 class Whale:
     def swim(self):
         print("Whale swimming")
+        self.flex_body_wave_fins()
+
+    def flex_body_wave_fins(self):
+        print "Flexing body and tail back and forth. Steering with fins."
+        print "\tFlexing: back, ",
+        for n in range(4):
+            if n % 2 == 0:
+                print "forth, ",
+            else:
+                print "back, ",
+            time.sleep(0.25)
+        print "..."
 
 
 # polymorphic method
@@ -42,6 +66,7 @@ bird = Bird()
 duck = Duck()
 airplane = Airplane()
 whale = Whale()
+dodo = Dodo()
 
 lift_off(bird)  # prints Bird flying
 lift_off(duck)  # prints Duck flying
@@ -54,3 +79,8 @@ try:
 except Exception as e2:
     print "Ack! Whales cannot fly!", e2
     whale.swim()
+
+try:
+    lift_off(dodo)
+except Exception as e1:
+    print repr()
