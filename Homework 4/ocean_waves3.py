@@ -36,6 +36,7 @@ plt.plot(x, y, 'r', color = [0, 0, 1],     linewidth=3,     alpha = 1)
 dx = 0.02; dy = 0.5
 for n in range(1, 21):
     next_color = [0, n / 20, 1 - n / 20]
+    print(n)
     next_alpha = next_color[2]
     plt.plot(x + 0.02*n, y + 0.5*n, color = next_color, linewidth=3, alpha=next_alpha       )
 

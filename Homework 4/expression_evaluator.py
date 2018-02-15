@@ -3,13 +3,14 @@ from Tkinter import *
 
 import random
 # The order of the next two imports makes a critical difference.
-from cmath import *
 from math import *
+from cmath import *
 
 
 def evaluate(event):
     # Define i and j to both be the complex square root of minus 1 here.
-
+    j = complex(0, 1)
+    i = complex(0, 1)
 
     try:
         answer = eval(expression_entry_widget.get())
@@ -21,12 +22,25 @@ def evaluate(event):
         print repr(e)
         # Add code here to display the error message in result_entry_widget.
         # Change the background to red instead of gold to signal an error.
-
+        result_entry_widget.delete(0, END)
+        result_entry_widget.insert(0, e)
+        result_entry_widget.configure(bg="red")
+        root.after(2000, result_entry_widget.configure, {"bg": "white"})
 
 # Append at least 20 new examples to  example_list here.
 example_list = []
 example_list.append("2 * sin(pi/2) * cos(pi/2)")
-
+example_list.append("log(e**2)")
+example_list.append("log(1000*1000, 10)")
+example_list.append("max([1, 2, 3, 4])")
+example_list.append("min([1, 2, 3, 4])")
+example_list.append("gamma(5)")
+example_list.append("atan(1)")
+example_list.append("asin(1)")
+example_list.append("floor(1.999)")
+example_list.append("ceil(1.999)")
+example_list.append("11 % 3")
+example_list.append("tan(5)")
 
 
 def clear():
@@ -38,7 +52,7 @@ def clear():
 
 def show_example():
     print "Example button pressed."
-    example = "2 * sin(pi/2) * cos(pi/2)"
+    example = random.choice(example_list)
     # Add code here to instead choose example at random from example_list.
 
     expression_entry_widget.delete(0, END)
@@ -78,5 +92,7 @@ example_button.grid(row=2, column=0)
 
 
 # Add and place the clear_button here.
+clear_button = Button(root, {"text": "Clear"}, command=clear)
+clear_button.grid(row=3, column=0)
 
 root.mainloop()

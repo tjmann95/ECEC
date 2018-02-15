@@ -50,18 +50,18 @@ class FCFrac(object):
         for k in range(2, len(self.a)):
             self.q[k] = self.a[k] * self.q[k-1] + self.q[k-2]
 
-    @staticmethod
-    def findFCFrac(m, n):  # Here, m and n are integers representing the rational number m/n.
-        result = FCFrac()  # Start with an empty continued fraction.
-        common = gcd(m,n)
-        m, n = m/common, n/common   # Remove the greatest common divisor, so the algorithm stops with n = 1.
-        firstTerm = m/n
-        result.a.append(firstTerm)
-        while n !=1:        # <-- Stop when n = 1.
-            m, n = n, m % n  # Pythonic tuple assignment.
-            nextTerm = m/n
-            result.a.append(nextTerm)
-        return result
+
+def findFCFrac(m, n):  # Here, m and n are integers representing the rational number m/n.
+    result = FCFrac()  # Start with an empty continued fraction.
+    common = gcd(m,n)
+    m, n = m/common, n/common   # Remove the greatest common divisor, so the algorithm stops with n = 1.
+    firstTerm = m/n
+    result.a.append(firstTerm)
+    while n !=1:        # <-- Stop when n = 1.
+        m, n = n, m % n  # Pythonic tuple assignment.
+        nextTerm = m/n
+        result.a.append(nextTerm)
+    return result
 
 
 # In contrast to the above static method, here we define an ordinary function.
@@ -101,3 +101,57 @@ if __name__ == "__main__":
     print "Coefficients a:       ", myFrac.a
     print "Partial numerators p: ", myFrac.p
     print "Partial quotients  q: ", myFrac.q
+
+    print "Example #2:"
+    print "We wish to show the continued fraction [1; 1, 1, 1] =  Golden"
+
+    # First construct
+    myFrac = FCFrac()
+    myFrac.a = [1]*4
+    print "Finite continued fraction #2 = ", myFrac
+
+
+    print "This fraction has the float value:", float(myFrac)
+    print "Exact rational form: ", Fraction(myFrac.p[-1], myFrac.q[-1])
+    print "The coefficients a, partial numerators p and partial quotients q are:"
+    print "Coefficients a:       ", myFrac.a
+    print "Partial numerators p: ", myFrac.p
+    print "Partial quotients  q: ", myFrac.q
+
+    print "Partial numerators and denominators follow Fibonacci."
+
+    print "Example #3:"
+    print "We wish to show the continued fraction [1; 1, 1, 1] =  Golden"
+
+    # First construct
+    myFrac = FCFrac()
+    myFrac.a = [1] * 10
+    print "Finite continued fraction #2 = ", myFrac
+
+    print "This fraction has the float value:", float(myFrac)
+    print "Exact rational form: ", Fraction(myFrac.p[-1], myFrac.q[-1])
+    print "The coefficients a, partial numerators p and partial quotients q are:"
+    print "Coefficients a:       ", myFrac.a
+    print "Partial numerators p: ", myFrac.p
+    print "Partial quotients  q: ", myFrac.q
+
+    print "Example #4:"
+    print "We wish to show the continued fraction [1; 1, 1, 1] =  Golden"
+
+    # First construct
+    myFrac = FCFrac()
+    myFrac.a = [1] * 100
+    print "Finite continued fraction #2 = ", myFrac
+
+    print "This fraction has the float value:", float(myFrac)
+    print "Exact rational form: ", Fraction(myFrac.p[-1], myFrac.q[-1])
+    print "The coefficients a, partial numerators p and partial quotients q are:"
+    print "Coefficients a:       ", myFrac.a
+    print "Partial numerators p: ", myFrac.p
+    print "Partial quotients  q: ", myFrac.q
+
+    print findFCFrac(14, 10)
+    print findFCFrac(141, 100)
+    print findFCFrac(1414, 1000)
+    print findFCFrac(141421356, 100000000)
+    print findFCFrac(1414213562373, 1000000000000)

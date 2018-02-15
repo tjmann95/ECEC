@@ -10,6 +10,41 @@ class Person(object):
         self._lastName = ""
         self._numberOfTeeth = 32   # 32 is you still have them all.
         self._weight = 0           # Weight in pounds
+        self._gender = False
+        self._height = []
+        self._age = 0
+        self._numberOfFillings = 0
+        self._numberOfCaps = 0
+
+    def setNumberOfCaps(self, num):
+        self._numberOfCaps = num
+
+    def getNumberOfCaps(self):
+        return self._numberOfCaps
+
+    def setNumberOfFillings(self, num):
+        self._numberOfFillings = num
+
+    def getNumberOfFillings(self):
+        return self._numberOfFillings
+
+    def setAge(self, age):
+        self._age = age
+
+    def getAge(self):
+        return self._age
+
+    def setHeight(self, height):
+        self._height = height
+
+    def getHeight(self):
+        return self._height
+
+    def setGender(self, gender):
+        self._gender = gender
+
+    def getGender(self):
+        return self._gender
 
     def setFirstName(self, first):
         self._firstName = first
@@ -61,3 +96,9 @@ if __name__ == "__main__":
     print "Sadly, Monty has recently gained 20 pounds, due to overindulgence throughout the holidays."
     monty.gainWeight(20)
     print "Now Monty weighs %d pounds." % monty.getWeight()
+    monty.setGender(True)
+    print "Monty is %s." % "male" if monty.getGender() == True else "female"
+    monty.setHeight([5, 10])
+    print "Monty is %d' %d\"." % (monty.getHeight()[0], monty.getHeight()[1])
+    monty.setAge(34)
+    print "Monty is %d years old." % monty.getAge()

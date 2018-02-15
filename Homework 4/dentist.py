@@ -5,6 +5,7 @@
 # Example to illustrate the substitution principle and polymorphism.
 
 from person import Person
+import random
 
 
 class Dentist(Person):  # A dentist is a person!
@@ -17,6 +18,13 @@ class Dentist(Person):  # A dentist is a person!
     def extractTooth(self, patient):
         patient.setNumberOfTeeth(patient.getNumberOfTeeth() - 1 )
 
+    def addFilling(self, patient):
+        fillings = patient.getNumberOfFillings()
+        patient.setNumberOfFillings(fillings + 1)
+
+    def capTooth(self, patient):
+        caps = patient.getNumberOfCaps()
+        patient.setNumberOfCaps(caps + 1)
 
 dentist1 = Dentist()
 dentist1.setFirstName("Dr.")
@@ -68,3 +76,19 @@ except Exception as e:
     print "Dentist: Yank, All better now!"
     print "Dentist: That will be another $1000.00"
     print "Dentist: Take better care of your remaining %d teeth." % patient1.getNumberOfTeeth()
+
+patient1.setAge(34)
+patient1.setWeight(200)
+patient1.setNumberOfTeeth(30)
+for i in range(12):
+    patient1.setAge(patient1.getAge() + 1)
+    patient1.gainWeight(6)
+    chance = random.random()
+    if chance < 0.3333:
+        patient1.setNumberOfCaps(patient1.getNumberOfCaps() + 1)
+    elif 0.3333 <= chance < 0.6666:
+        patient1.setNumberOfTeeth(patient1.getNumberOfTeeth() - 1)
+    print patient1.getNumberOfTeeth()
+    print patient1.getNumberOfCaps()
+    print patient1.getAge()
+    print patient1.getHeight()

@@ -8,18 +8,24 @@ __author__ = 'robincarr'
 
 import time
 from Tkinter import *
+import os
 
 
 root = Tk()
 root.title("Time to Relax!")
 
-folder_info= "animation_images/orchid/"
+animation_list = ["orchid", "storm"]
+
+folder_info= "animation_images/" + animation_list[1] + "/"
 # Collect all the images in the animation folder into a big list.
 imagelist = []
 beginning = folder_info + 'frame_'
-ending = '_delay-0.07s.gif'
+ending = '_delay-0.07s.gif' if "orchid" in folder_info else "_delay-0.08s.gif"
 
-for n in range(0,12): # Frames are labelled from 0 to 11.
+path, dirs, files = os.walk(folder_info).next()
+file_count = len(files)
+
+for n in range(0,file_count): # Frames are labelled from 0 to 11.
     middle = str(n)
     next_file = beginning + middle + ending
     imagelist.append(next_file)
